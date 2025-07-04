@@ -1,22 +1,22 @@
 name: entity_sync
-version: '0.0.1'
+version: 0.1.0
 description: An entity sync library for Dart developers.
-homepage: https://github.com/cmberryau/entity_sync
+homepage: https://github.com/qBozo/entity_sync
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
-  http: 0.13.1
-  moor: ^4.1.0
+  http: ^0.13.6
+  drift: ^2.10.0
 
 dev_dependencies:
-  pedantic: ^1.9.0
-  test: ^1.14.4
-  mockito: 5.0.3
-  build_runner: ^1.10.1
-  moor_generator: ^4.2.1
+  lints: ^3.0.0
+  test: ^1.24.0
+  mockito: ^5.4.2
+  build_runner: ^2.4.7
+  drift_dev: ^2.10.0
   entity_sync_generator:
     git:
-      url: https://github.com/lodlaw/entity_sync_generator
-      ref: dependencies-upgrade
+      url: https://github.com/qBozo/entity_sync_generator
+      ref: dart3-fixes
