@@ -1,25 +1,24 @@
 targets:
   $default:
+    sources:
+      - lib/**
+      - test/**
     builders:
-      moor_generator:
-        enabled: false
       moor_generator|moor_generator_not_shared:
         enabled: true
       entity_sync_generator|use_entity_sync_builder:
         enabled: false
       mockito|mockBuilder:
         enabled: true
-        generate_for: ['endpoint_test.dart']
+        generate_for:
+          - test/endpoint_test.dart
       build_resolvers|transitive_digests:
-        enabled: false  
+        enabled: false
 
   entity_sync_generator:
     dependencies: ['entity_sync_generator']
     builders:
-      moor_generator:
-        enabled: false
       moor_generator|moor_generator_not_shared:
         enabled: false
       build_resolvers|transitive_digests:
-        enabled: false  
-
+        enabled: false
