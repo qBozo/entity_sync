@@ -1,4 +1,5 @@
 import 'package:entity_sync/entity_sync.dart';
+import 'package:meta/meta.dart';
 
 class UseEntitySync {
   final Type baseClass;
@@ -16,6 +17,7 @@ class UseEntitySync {
   });
 }
 
+@Target({TargetKind.classType})
 class UseSyncable {
   const UseSyncable();
 }
