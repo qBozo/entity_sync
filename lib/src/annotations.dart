@@ -15,3 +15,7 @@ class UseEntitySync {
     this.remoteKeyField,
   });
 }
+
+class UseSyncable {
+  const UseSyncable();
+}
