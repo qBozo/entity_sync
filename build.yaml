@@ -14,9 +14,13 @@ targets:
         enabled: false  
 
   entity_sync_generator:
-    dependencies: [ 'entity_sync_generator' ]
+    dependencies: ['entity_sync_generator']
     builders:
       moor_generator:
         enabled: false
       moor_generator|moor_generator_not_shared:
         enabled: false
+
+builders:
+  build_resolvers|transitive_digests:
+    enabled: false 
