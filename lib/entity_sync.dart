@@ -1,4 +1,4 @@
-library entity_sync;
+final String baseClassName;
 
 export 'src/endpoints.dart';
 export 'src/serialization.dart';
