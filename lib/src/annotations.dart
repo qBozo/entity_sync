@@ -17,6 +17,7 @@ class UseEntitySync {
   });
 }
 
+@pragma('dart2js:noInline')
 @Target({TargetKind.classType})
 class UseSyncable {
   const UseSyncable();
