@@ -14,9 +14,4 @@ dev_dependencies:
   lints: ^3.0.0
   test: ^1.24.0
   mockito: ^5.4.2
-  build_runner: ^2.4.7
   drift_dev: ^2.10.0
-  entity_sync_generator:
-    git:
-      url: https://github.com/qBozo/entity_sync_generator
-      ref: dart3-fixes
