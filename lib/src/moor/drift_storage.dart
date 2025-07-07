@@ -1,12 +1,12 @@
-part of 'moor.dart';
+part of 'drift.dart';
 
-/// Responsible for local storage through moor
-class MoorStorage<TProxy extends ProxyMixin<DataClass>>
+/// Responsible for local storage through Drift
+class DriftStorage<TProxy extends ProxyMixin<DataClass>>
     implements Storage<TProxy> {
-  /// The moor database that we are syncing with
+  /// The Drift database that we are syncing with
   final GeneratedDatabase database;
 
-  /// The moor table that we are syncing with
+  /// The Drift table that we are syncing with
   final SyncableTable table;
 
   /// The flag column of the table
@@ -15,7 +15,7 @@ class MoorStorage<TProxy extends ProxyMixin<DataClass>>
   /// The proxy factory
   final ProxyFactory proxyFactory;
 
-  MoorStorage(this.table, this.database, this.proxyFactory) {
+  DriftStorage(this.table, this.database, this.proxyFactory) {
     /// Get the flag column on the table
     flagColumn = table.shouldSync;
   }
@@ -23,7 +23,7 @@ class MoorStorage<TProxy extends ProxyMixin<DataClass>>
   @override
   Future<Iterable<TProxy>> getInstancesToSync() async {
     final toSyncInstances =
-        await (database.select(table.actualTable() as TableInfo)
+        await (database.select(table.actualTable() as TableInfo<Table, DataClass>)
               ..where((t) => flagColumn.equals(true)))
             .get();
 
@@ -34,11 +34,11 @@ class MoorStorage<TProxy extends ProxyMixin<DataClass>>
   Future<TProxy?> get({dynamic remoteKey, dynamic localKey}) async {
     DataClass? instance;
     if (remoteKey != null) {
-      instance = await (database.select(table.actualTable() as TableInfo)
+      instance = await (database.select(table.actualTable() as TableInfo<Table, DataClass>)
             ..where((t) => table.remoteKeyColumn().equals(remoteKey)))
           .getSingle();
     } else if (localKey != null) {
-      instance = await (database.select(table.actualTable() as TableInfo)
+      instance = await (database.select(table.actualTable() as TableInfo<Table, DataClass>)
             ..where((t) => table.localKeyColumn().equals(localKey)))
           .getSingle();
     }
@@ -53,7 +53,7 @@ class MoorStorage<TProxy extends ProxyMixin<DataClass>>
   @override
   Future<StorageResult<TProxy>> insert(TProxy instance,
       {dynamic remoteKey, dynamic localKey}) async {
-    await database.into(table.actualTable() as TableInfo).insert(instance);
+    await database.into(table.actualTable() as TableInfo<Table, DataClass>).insert(instance);
     return StorageResult<TProxy>(true);
   }
 
@@ -63,7 +63,7 @@ class MoorStorage<TProxy extends ProxyMixin<DataClass>>
     final localInstance = await get(remoteKey: remoteKey, localKey: localKey);
 
     if (localInstance != null) {
-      await (database.update(table.actualTable() as TableInfo)
+      await (database.update(table.actualTable() as TableInfo<Table, DataClass>)
             ..where((t) =>
                 table.localKeyColumn().equals(localInstance.getLocalKey())))
           .write(instance);

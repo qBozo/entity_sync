@@ -1,12 +1,12 @@
 import 'package:entity_sync/entity_sync.dart';
-import 'package:moor/moor.dart';
+import 'package:drift/drift.dart';
 
-part 'moor_storage.dart';
+part 'drift_storage.dart';
 
 /// Responsible for creating proxies
 abstract class ProxyFactory<TProxy extends ProxyMixin<DataClass>,
     TEntity extends DataClass> {
-  /// Creates a proxy from a moor instance
+  /// Creates a proxy from a drift instance
   TProxy fromInstance(TEntity instance);
 }
 
@@ -26,11 +26,12 @@ abstract class SyncableTable extends Table {
   BoolColumn get shouldSync => boolean().clientDefault(() => true)();
 
   /// The column for local key storage
-  Column localKeyColumn();
+  GeneratedColumn localKeyColumn();
 
   /// The column for remote key storage
-  Column remoteKeyColumn();
+  GeneratedColumn remoteKeyColumn();
 
   /// The actual table
   SyncableTable actualTable();
 }
+
