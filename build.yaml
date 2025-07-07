@@ -4,9 +4,11 @@ targets:
       - lib/**
       - test/**
     builders:
+      moor_generator|moor_generator_not_shared:
+        enabled: true
       entity_sync_generator|use_entity_sync_builder:
-        enabled: false
-      drift_dev|not_shared:
-        enabled: false
+        enabled: false  
       mockito|mockBuilder:
-        enabled: false
+        enabled: true
+        generate_for:
+          - test/endpoint_test.dart
