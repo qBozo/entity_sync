@@ -2,14 +2,14 @@ import 'package:entity_sync/entity_sync.dart';
 import 'package:meta/meta.dart';
 
 class UseEntitySync {
-  final Type baseClass;
+  final String baseClassName; 
   final List<SerializableField> fields;
   final SerializableField? keyField;
   final SerializableField? flagField;
   final SerializableField? remoteKeyField;
 
   const UseEntitySync(
-    this.baseClass, {
+    this.baseClassName, {
     this.fields = const [],
     this.keyField,
     this.flagField,
