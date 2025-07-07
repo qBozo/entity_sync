@@ -10,6 +10,8 @@ targets:
       mockito|mockBuilder:
         enabled: true
         generate_for: ['endpoint_test.dart']
+      build_resolvers|transitive_digests:
+        enabled: false  
 
   entity_sync_generator:
     dependencies: [ 'entity_sync_generator' ]
