@@ -20,5 +20,3 @@ targets:
     builders:
       moor_generator|moor_generator_not_shared:
         enabled: false
-      build_resolvers|transitive_digests:
-        enabled: false
